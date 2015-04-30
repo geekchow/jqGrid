@@ -8,3 +8,4 @@ yuicompressor.jar
 .gradle
 .DS_Store
 release
+.idea

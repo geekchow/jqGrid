@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>scroll to load</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/ui.jqgrid-bootstarp.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/ui.jqgrid.css" />
+    <script type="text/javascript" src="../jquery.js"></script>
+    <script type="text/javascript" src="../js/i18n/grid.locale-en.js"></script>
+    <script type="text/javascript" src="../js/jquery.jqGrid.js"></script>
+
+</head>
+<body style="margin-left: 20%;text-align: center;">
+
+<table id="scrgrid"></table>
+<div id="pscrgrid"></div>
+
+<script type="text/javascript">
+
+    $(function(){
+        pageInit();
+    });
+    function pageInit(){
+        jQuery("#scrgrid").jqGrid({
+            url:'JSONData.json',
+            datatype: "json",
+            colNames:['Inv No','Date', 'Client', 'Amount','Tax','Total','Notes'],
+            colModel:[
+                {name:'id',index:'id', width:55},
+                {name:'invdate',index:'invdate', width:90},
+                {name:'name',index:'name asc, invdate', width:100},
+                {name:'amount',index:'amount', width:80, align:"right"},
+                {name:'tax',index:'tax', width:80, align:"right"},
+                {name:'total',index:'total', width:80,align:"right"},
+                {name:'note',index:'note', width:150, sortable:false}
+            ],
+            rowNum:10,
+            scroll: true,
+            /*rowList:[10,20,30],*/
+            pager: '#pscrgrid',
+            sortname: 'id',
+            viewrecords: true,
+            sortorder: "desc",
+            jsonReader: {
+                repeatitems : true,
+                id: "0"
+            },
+            caption: "Autoloading data with scroll",
+            height: 250
+        });
+
+    }
+
+
+</script>
+
+</body>
+</html>
